@@ -26,18 +26,19 @@ export default function SinglePlayer({ playerID, setPlayerID }) {
 
   return (
     <div className="player-card" key={player.id}>
-      <img src={player.imageUrl} />
+      <img src={player.imageUrl} alt={`Image of ${player.name}`}/>
       <h3>
         <span className="name-span">Name | </span>
         {player.name}
       </h3>
+      <h4> <span>team: </span>{player.teamId} / <span>cohort: </span>{player.cohortId}</h4>
       <h4>
-        <span>Breed: </span>
-        {player.breed}
+        <span>Birth: </span>
+        {player.createdAt}
       </h4>
       <h4>
-        <span>Status: </span>
-        {player.status}
+        <span>Modification: </span>
+        {player.updatedAt}
       </h4>
       <button onClick={() => setPlayerID(null)}
       >

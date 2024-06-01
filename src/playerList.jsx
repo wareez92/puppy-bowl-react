@@ -51,7 +51,30 @@ export default function PlayerList({ playerID, setPlayerID }) {
             >
               Details
             </button>
-            <button>Delete</button>
+            <button
+              onClick={(playerID) => {
+                setPlayers((prevPlayers) =>
+                  prevPlayers.filter((p) => p.id !== player.id)
+                );
+                setFilteredPlayers((prevFilteredPlayers) =>
+                  prevFilteredPlayers.filter((p) => p.id !== player.id)
+                );
+                async () => {
+                  try {
+                    const response = await fetch(
+                      `${API_URL}/${cohort}/players/${playerID}`,
+                      { method: "DELETE" }
+                    );
+                    const result = await response.json();
+                  } catch (error) {
+                    console.error(error);
+                  }
+                  console.log(result);
+                };
+              }}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>

@@ -24,14 +24,21 @@ export default function SinglePlayer({ playerID, setPlayerID }) {
   }, []);
   console.log(player);
 
+  const deletePlayer = async () => {};
+
   return (
     <div className="player-card" key={player.id}>
-      <img src={player.imageUrl} alt={`Image of ${player.name}`}/>
+      <img src={player.imageUrl} alt={`Image of ${player.name}`} />
       <h3>
         <span className="name-span">Name | </span>
         {player.name}
       </h3>
-      <h4> <span>team: </span>{player.teamId} / <span>cohort: </span>{player.cohortId}</h4>
+      <h4>
+        {" "}
+        <span>team: </span>
+        {player.teamId} / <span>cohort: </span>
+        {player.cohortId}
+      </h4>
       <h4>
         <span>Birth: </span>
         {player.createdAt}
@@ -40,10 +47,7 @@ export default function SinglePlayer({ playerID, setPlayerID }) {
         <span>Modification: </span>
         {player.updatedAt}
       </h4>
-      <button onClick={() => setPlayerID(null)}
-      >
-        Back
-      </button>
+      <button onClick={() => setPlayerID(null)}>Back</button>
       <button>Delete</button>
     </div>
   );

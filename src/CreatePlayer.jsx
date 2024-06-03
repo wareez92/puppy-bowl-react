@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PlayerList from "./Components/playerList";
+
 const API_URL = "https://fsa-puppy-bowl.herokuapp.com/api";
 const cohort = "2401_FTB_MT_WEB_PT";
 
@@ -9,6 +11,7 @@ export default function CreatePlayer() {
   const [imageUrl, setImageUrl] = useState("");
   const [teamId, setTeamId] = useState("");
   const [cohortId, setCohortId] = useState(cohort);
+  const [createdPlayers, setCreatedPlayers] = useState({});
 
   const postPlayer = async (event) => {
     event.preventDefault();
@@ -28,11 +31,14 @@ export default function CreatePlayer() {
         }),
       });
       const result = await response.json();
-      console.log(result);
+      setCreatedPlayers(result.data.newPlayer);
+      console.log(createdPlayers);
     } catch (error) {
       console.error(error);
     }
   };
+
+
 
   return (
     <div>

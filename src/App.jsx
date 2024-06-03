@@ -1,23 +1,18 @@
 import "./App.css";
-import PlayerList from "./playerList";
-import SearchBar from "./SearchBar";
-import SinglePlayer from "./SinglePlayer";
-import { useState } from "react";
-import CreatePlayer from "./CreatePlayer";
+import PlayerList from "./Components/PlayerList";
+import { Routes, Route } from "react-router-dom";
+import SinglePlayer from "./Components/SinglePlayer";
+import DetailedPlayer from "./Components/DetailedPlayer";
 
 function App() {
-  const [playerID, setPlayerID] = useState(null);
-
   return (
     <>
-      {playerID ? (
-        <SinglePlayer playerID={playerID} setPlayerID={setPlayerID} />
-      ) : (
-        <>
-          <CreatePlayer />
-          <PlayerList setPlayerID={setPlayerID} />
-        </>
-      )}
+      <Routes>
+        <Route path="/" element={<PlayerList />} />
+        <Route path="/players" element={<PlayerList />} />
+        <Route path="/players/:playerId" element={<SinglePlayer />} />
+        <Route path="/players/:playerId" element={<DetailedPlayer />} />
+      </Routes>
     </>
   );
 }
